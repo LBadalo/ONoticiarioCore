@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ONoticiarioCore.Data;
 
 namespace ONoticiarioCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200714191509_asd")]
-    partial class asd
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,10 +26,15 @@ namespace ONoticiarioCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("NoticiasID")
+                        .HasColumnType("int");
+
                     b.Property<string>("TipoCategoria")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("NoticiasID");
 
                     b.ToTable("Categorias");
 
@@ -134,9 +137,6 @@ namespace ONoticiarioCore.Migrations
                     b.Property<string>("Capa")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoriasID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Conteudo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -156,11 +156,51 @@ namespace ONoticiarioCore.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CategoriasID");
-
                     b.HasIndex("UtilizadorFK");
 
                     b.ToTable("Noticias");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Capa = "asd.jpg",
+                            Conteudo = "asdasdsada.",
+                            Data = new DateTime(2019, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "asdasd.",
+                            Titulo = "aaa",
+                            UtilizadorFK = 1
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Capa = "asdasdas.jpg",
+                            Conteudo = "asdasdsadasdas",
+                            Data = new DateTime(2019, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "aaaa",
+                            Titulo = "asdasdsa",
+                            UtilizadorFK = 1
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Capa = "asdasdas.jpg",
+                            Conteudo = "asdasdsadasdas",
+                            Data = new DateTime(2019, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "aaaa",
+                            Titulo = "asdasdsa",
+                            UtilizadorFK = 1
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Capa = "asdasdas.jpg",
+                            Conteudo = "asdasdsadasdas",
+                            Data = new DateTime(2019, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "aaaa",
+                            Titulo = "asdasdsa",
+                            UtilizadorFK = 2
+                        });
                 });
 
             modelBuilder.Entity("ONoticiarioCore.Models.Utilizadores", b =>
@@ -197,7 +237,7 @@ namespace ONoticiarioCore.Migrations
                             DataNascimento = new DateTime(1997, 9, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "a",
                             Email = "admin@ipt.pt",
-                            Username = "luis"
+                            Username = "Luis"
                         },
                         new
                         {
@@ -219,6 +259,13 @@ namespace ONoticiarioCore.Migrations
                         });
                 });
 
+            modelBuilder.Entity("ONoticiarioCore.Models.Categorias", b =>
+                {
+                    b.HasOne("ONoticiarioCore.Models.Noticias", null)
+                        .WithMany("ListaCategorias")
+                        .HasForeignKey("NoticiasID");
+                });
+
             modelBuilder.Entity("ONoticiarioCore.Models.Comentarios", b =>
                 {
                     b.HasOne("ONoticiarioCore.Models.Noticias", "Noticia")
@@ -236,10 +283,6 @@ namespace ONoticiarioCore.Migrations
 
             modelBuilder.Entity("ONoticiarioCore.Models.Noticias", b =>
                 {
-                    b.HasOne("ONoticiarioCore.Models.Categorias", null)
-                        .WithMany("ListaNoticias")
-                        .HasForeignKey("CategoriasID");
-
                     b.HasOne("ONoticiarioCore.Models.Utilizadores", "Utilizador")
                         .WithMany("ListaNoticias")
                         .HasForeignKey("UtilizadorFK")

@@ -23,21 +23,23 @@ namespace ONoticiarioCore
         }
 
         public IConfiguration Configuration { get; }
-        
 
-      // This method gets called by the runtime. Use this method to add services to the container.
-      public void ConfigureServices(IServiceCollection services)
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //  services.AddDefaultIdentity<IdentityUser>( 
+            // deixei de usar a referência ao Utilizador standard para passar a usar o 'meu' novo utilizador
+           // services.AddDefaultIdentity<ApplicationUser>(
+            //   options => options.SignIn.RequireConfirmedAccount = true)
+             //   .AddRoles<IdentityRole>()  // ativa o funcionamento dos ROLES
+              //  .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
-
-            //****************************************************************************
-            // especificação do 'tipo' e 'localização' da BD
-            services.AddDbContext<ApplicationDbContext>(options => options
-                                                          .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-                                                         // .UseLazyLoadingProxies()  // ativamos a opção do Lazy Loading
-            );
-            //****************************************************************************
-
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,8 +64,7 @@ namespace ONoticiarioCore
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
+            app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

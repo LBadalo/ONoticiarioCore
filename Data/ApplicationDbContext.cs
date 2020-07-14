@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,9 @@ namespace ONoticiarioCore.Data
 
             //Inicio do SEED
 
+
+
+
             //Categorias
 
             modelBuilder.Entity<Categorias>().HasData(
@@ -40,12 +44,18 @@ namespace ONoticiarioCore.Data
 
             //Utilizadores
             modelBuilder.Entity<Utilizadores>().HasData(
-                        new Utilizadores { Avatar = "aa.jpg", ID = 1, Descricao = "a", Username = "luis", Email = "admin@ipt.pt", DataNascimento = new DateTime(1997, 9, 29) },
+                        new Utilizadores { Avatar = "aa.jpg", ID = 1, Descricao = "a", Username = "Luis", Email = "admin@ipt.pt", DataNascimento = new DateTime(1997, 9, 29) },
                         new Utilizadores { Avatar = "aa.jpg", ID = 2, Descricao = "aa", Username = "AntonioSilva", Email = "Jornalista@ipt.com", DataNascimento = new DateTime(1970, 2, 09) },
                         new Utilizadores { Avatar = "aa.jpg", ID = 3, Descricao = "aaa", Username = "Mauricio", Email = "teste@ipt.pt", DataNascimento = new DateTime(1922, 2, 20) }
                     );
             //utilizadores.ForEach(aa => context.Utilizadores.AddOrUpdate(a => a.Username, aa));
             //context.SaveChanges();
+
+            //criação de comentários
+            modelBuilder.Entity<Comentarios>().HasData(
+                new Comentarios { ID = 1, Descricao = "Comentário de teste", UtilizadorFK = 3, Data = new DateTime(2019, 6, 28), NoticiasFK = 1 },
+                        new Comentarios { ID = 2, Descricao = "Comentário de teste", Data = new DateTime(2019, 6, 28), UtilizadorFK = 2, NoticiasFK = 2 }
+                    );
 
             //criação das noticias
             modelBuilder.Entity<Noticias>().HasData(
@@ -99,27 +109,39 @@ namespace ONoticiarioCore.Data
                                 Descricao = "aaaa",
                                 Conteudo = "asdasdsadasdas",
                                 ///
-                                ListaCategorias = new List<Categorias> { },
+                                ListaCategorias = new List<Categorias> { new Categorias {ID = 1}, new Categorias { ID = 2 } },
                                 ListaComentarios = new List<Comentarios> { }
                             }
                     );
+            modelBuilder.Entity<Categoria_Noticias>()
+                .HasKey(nc => new { nc.catId, nc.notId });
+            modelBuilder.Entity<Categoria_Noticias>()
+                .HasOne(nc => nc.Noticias)
+                .WithMany(c => c.ListaCategorias)
+                .HasForeignKey(nc => nc.notId);
+            modelBuilder.Entity<Categoria_Noticias>()
+                .HasOne(nc => nc.Categorias)
+                .WithMany(c => c.ListaNoticias)
+                .HasForeignKey(nc => nc.catId);
+
             //noticias.ForEach(aa => context.Noticias.AddOrUpdate(a => a.Data, aa));
             //context.SaveChanges();
 
-            //criação de comentários
-            modelBuilder.Entity<Comentarios>().HasData(
-                new Comentarios { ID = 1, Descricao = "Comentário de teste", UtilizadorFK = 3, Data = new DateTime(2019, 6, 28), NoticiasFK = 1 },
-                        new Comentarios { ID = 2, Descricao = "Comentário de teste", Data = new DateTime(2019, 6, 28), UtilizadorFK = 2, NoticiasFK = 2 }
-                    );
+
         }
 
         //comentarios.ForEach(aa => context.Comentarios.AddOrUpdate(a => a.Descricao, aa));
         //context.SaveChanges();
 
         // adicionar as 'tabelas' à BD
+
+        public virtual DbSet<Categorias> Categorias { get; set; }
         public virtual DbSet<Utilizadores> Utilizadores { get; set; }
         public virtual DbSet<Noticias> Noticias { get; set; }
         public virtual DbSet<Comentarios> Comentarios { get; set; }
-        public virtual DbSet<Categorias> Categorias { get; set; }
+        public virtual DbSet<Categoria_Noticias> Categoria_Noticias { get; set; }
+
     }
+
 }
+

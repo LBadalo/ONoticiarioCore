@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace ONoticiarioCore.Models
         //[Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
         public string TipoCategoria { get; set; }
         //Relacionar as categorias com as noticias
+
         public virtual ICollection<Noticias> ListaNoticias { get; set; }
     }
 }
