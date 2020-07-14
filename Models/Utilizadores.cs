@@ -12,8 +12,8 @@ namespace ONoticiarioCore.Models
         //construtor
         public Utilizadores()
         {
-            this.ListaComentarios = new HashSet<Comentarios>();
-            this.ListaNoticias = new HashSet<Noticias>();
+            ListaComentarios = new HashSet<Comentarios>();
+            ListaNoticias = new HashSet<Noticias>();
         }
 
         //ID
@@ -24,7 +24,7 @@ namespace ONoticiarioCore.Models
         //[Required(ErrorMessage = "O {0} é de preenchimento obrigatório.")]
         //[StringLength(40, ErrorMessage = "O {0} não pode ter mais de {1} carateres.")]
         //[RegularExpression("^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]*", ErrorMessage = "O {0} tem caracteres inválidos!")]
-        public string Nome { get; set; }
+        public string Username { get; set; }
 
         //Data nascimento
         //data no formato ano/mes/dia
@@ -41,7 +41,7 @@ namespace ONoticiarioCore.Models
         //atributo auxiliar para relacionar a tabela dos utilizadores Asp.Net com a tabela utilizadores
         //[RegularExpression("^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]*", ErrorMessage = "O {0} tem caracteres inválidos!")]
         //[Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
-        public string Username { get; set; }
+        public string Email { get; set; }
 
         //Relacionar o utilizadoes às varias noticias onde escreveu e quais comentarios
         public virtual ICollection<Comentarios> ListaComentarios { get; set; }

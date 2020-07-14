@@ -11,9 +11,9 @@ namespace ONoticiarioCore.Models
     {
         public Noticias()
             {
-                this.ListaComentarios = new HashSet<Comentarios>();
+                ListaComentarios = new HashSet<Comentarios>();
 
-                this.ListaCategorias = new HashSet<Categorias>();
+                ListaCategorias = new HashSet<Categorias>();
             }
 
             //Chave primaria
