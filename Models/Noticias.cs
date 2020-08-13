@@ -13,8 +13,8 @@ namespace ONoticiarioCore.Models
             {
                 ListaComentarios = new HashSet<Comentarios>();
 
-                ListaCategorias = new HashSet<Categorias>();
-            }
+                ListCatNot = new HashSet<Categoria_Noticias>();
+        }
 
             //Chave primaria
             [Key]
@@ -52,6 +52,6 @@ namespace ONoticiarioCore.Models
             public virtual ICollection<Comentarios> ListaComentarios { get; set; }
 
             //Relacionar a noticia às varias categorias
-            public virtual ICollection<Categorias> ListaCategorias { get; set; }
+            public virtual ICollection<Categoria_Noticias> ListCatNot { get; set; }
     }
 }
