@@ -1,8 +1,50 @@
-﻿@{
+﻿
+@model IEnumerable<ONoticiarioCore.Models.Noticias>
+
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="container" style="padding-top:5px;">
+        <div class="row" style="">
+            @foreach (var noticia in Model)
+            {
+                <div class="col-md-4 d-flex align-items-stretch" style="margin-bottom:20px;">
+                    <div class="card text-white bg-dark" style="width: 22rem;">
+                        <img src="~/Imagens/Noticias/@Html.DisplayTextFor(n => noticia.Capa)" class="card-img-top" alt="..." style="max-height: 189px;">
+                        <div class="card-body">
+                            <a href="@Url.Action("Details","Noticias",new { id =noticia.ID})" class="">
+                                <h5 class="card-title">@Html.DisplayTextFor(n => noticia.Titulo)</h5>
+
+                            </a>
+                            <p class="card-text">
+
+                            </p>
+                            <a href="@Url.Action("Details","Noticias",new { id = noticia.ID })" style="margin-bottom:15px;">
+
+                            </a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <br />
+                                <div style="margin-top:25px;">
+                                    @Html.ActionLink("Editar", "Edit", new { id = noticia.ID }, new { @class = "btn btn-primary btnEdit btn-sm" })
+                                    @Html.ActionLink("Remover", "Delete", new { id = noticia.ID }, new { @class = "btn btn-danger btnRemove btn-sm" })
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <br />
+
+
+
+
+    </div>
 </div>

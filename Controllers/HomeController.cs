@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ONoticiarioCore.Data;
 using ONoticiarioCore.Models;
 
 namespace ONoticiarioCore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext db;
+
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            db = context;
         }
-
-        public IActionResult Index()
+        [AllowAnonymous]//apesar de existir restriçoes de acesso um utilizador anonimo consegue vizualizar noticias
+        //GET: Noticias
+        public IActionResult Index(string categoria, int? page)
         {
-            return View();
+            var applicationDbContext = db.Noticias.Include(n => n.Utilizador);
+            return View(applicationDbContext.ToList());
         }
 
         public IActionResult Privacy()

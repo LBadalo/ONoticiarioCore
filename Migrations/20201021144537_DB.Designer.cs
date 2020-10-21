@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ONoticiarioCore.Data;
 
 namespace ONoticiarioCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201021144537_DB")]
+    partial class DB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,7 +193,7 @@ namespace ONoticiarioCore.Migrations
                         new
                         {
                             ID = 1,
-                            Capa = "coldzera.jpg",
+                            Capa = "asd.jpg",
                             Conteudo = "asdasdsada.",
                             Data = new DateTime(2019, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "asdasd.",

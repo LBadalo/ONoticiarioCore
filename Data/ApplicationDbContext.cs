@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ONoticiarioCore.Models;
 
@@ -12,24 +11,24 @@ namespace ONoticiarioCore.Data
 {
 
 
-    //public class ApplicationUser : IdentityUser
-    //{
+    public class ApplicationUser : IdentityUser
+    {
 
-    //    /// <summary>
-    //    /// nome da pessoa q se regista, e posteriormente, autentica
-    //    /// </summary>
-    //    public string Nome { get; set; }
+        /// <summary>
+        /// nome da pessoa q se regista, e posteriormente, autentica
+        /// </summary>
+        public string Nome { get; set; }
 
-    //    /// <summary>
-    //    /// avatar da pessoa q se regista, e posteriormente, autentica
-    //    /// </summary>
-    //    public string Fotografia { get; set; }
+        /// <summary>
+        /// avatar da pessoa q se regista, e posteriormente, autentica
+        /// </summary>
+        public string Fotografia { get; set; }
 
-    //    /// <summary>
-    //    /// registo da hora+data da criação do registo
-    //    /// </summary>
-    //    public DateTime Timestamp { get; set; }
-    //}
+        /// <summary>
+        /// registo da hora+data da criação do registo
+        /// </summary>
+        public DateTime Timestamp { get; set; }
+    }
 
 
     public class ApplicationDbContext : DbContext
@@ -100,7 +99,7 @@ namespace ONoticiarioCore.Data
                                 ID = 1,
                                 Data = new DateTime(2019, 06, 28),
                                 Titulo = "aaa",
-                                Capa = "asd.jpg",
+                                Capa = "coldzera.jpg",
                                 UtilizadorFK = 1,
                                 Descricao = "asdasd.",
                                 Conteudo = "asdasdsada.",

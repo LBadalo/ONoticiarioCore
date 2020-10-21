@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ONoticiarioCore.Data;
 
 namespace ONoticiarioCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201021153212_DB2")]
+    partial class DB2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,7 +193,7 @@ namespace ONoticiarioCore.Migrations
                         new
                         {
                             ID = 1,
-                            Capa = "coldzera.jpg",
+                            Capa = "asd.png",
                             Conteudo = "asdasdsada.",
                             Data = new DateTime(2019, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "asdasd.",
@@ -201,7 +203,7 @@ namespace ONoticiarioCore.Migrations
                         new
                         {
                             ID = 2,
-                            Capa = "asdasdas.jpg",
+                            Capa = "asdasdas.png",
                             Conteudo = "asdasdsadasdas",
                             Data = new DateTime(2019, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "aaaa",
@@ -211,7 +213,7 @@ namespace ONoticiarioCore.Migrations
                         new
                         {
                             ID = 3,
-                            Capa = "asdasdas.jpg",
+                            Capa = "asdasdas.png",
                             Conteudo = "asdasdsadasdas",
                             Data = new DateTime(2019, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "aaaa",

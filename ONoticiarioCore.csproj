@@ -32,10 +32,16 @@
     <Compile Remove="Migrations\20200813181056_DB.Designer.cs" />
     <Compile Remove="Migrations\20200915150114_DB.cs" />
     <Compile Remove="Migrations\20200915150114_DB.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Imagens\index.jpg" />
+    <Compile Remove="Migrations\20200917090447_DB.cs" />
+    <Compile Remove="Migrations\20200917090447_DB.Designer.cs" />
+    <Compile Remove="Migrations\20200917093933_DB2.cs" />
+    <Compile Remove="Migrations\20200917093933_DB2.Designer.cs" />
+    <Compile Remove="Migrations\20201021135548_DB.cs" />
+    <Compile Remove="Migrations\20201021135548_DB.Designer.cs" />
+    <Compile Remove="Migrations\20201021135621_DB.cs" />
+    <Compile Remove="Migrations\20201021135621_DB.Designer.cs" />
+    <Compile Remove="Migrations\20201021144031_DB.cs" />
+    <Compile Remove="Migrations\20201021144031_DB.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +56,18 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Imagens\Avatar\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Imagens\index.jpg" />
+    <None Include="wwwroot\Imagens\Noticias\asd.png" />
+    <None Include="wwwroot\Imagens\Noticias\asdasdas.png" />
+    <None Include="wwwroot\Imagens\Noticias\coldzera.jpg" />
+    <None Include="wwwroot\Imagens\Noticias\transparent-emoji-laugh-1.png" />
   </ItemGroup>
 
 </Project>

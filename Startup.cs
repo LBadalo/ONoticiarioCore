@@ -32,8 +32,9 @@ namespace ONoticiarioCore
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(
-             // deixei de usar a referência ao Utilizador standard para passar a usar o 'meu' novo utilizador
-             options => options.SignIn.RequireConfirmedAccount = true)
+            // deixei de usar a referência ao Utilizador standard para passar a usar o 'meu' novo utilizador
+            //services.AddDefaultIdentity<ApplicationUser>(
+            options => options.SignIn.RequireConfirmedAccount = true)
               .AddRoles<IdentityRole>()  // ativa o funcionamento dos ROLES
               .AddEntityFrameworkStores<ApplicationDbContext>();
             
@@ -71,5 +72,6 @@ namespace ONoticiarioCore
                 endpoints.MapRazorPages();
             });
         }
+
     }
 }
