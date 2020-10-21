@@ -10,11 +10,11 @@ namespace ONoticiarioCore.Models
     public class Categoria_Noticias
     {
         [ForeignKey("Categorias")]
-        public int categoriaIdFK { get; set; }
+        public int CategoriaIdFK { get; set; }
         public virtual Categorias Categorias { get; set; }
 
         [ForeignKey("Noticias")]
-        public int noticiaIdFK { get; set; }
+        public int NoticiaIdFK { get; set; }
         public virtual Noticias Noticias { get; set; }
 
     }

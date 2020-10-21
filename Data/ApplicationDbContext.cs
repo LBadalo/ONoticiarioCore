@@ -48,17 +48,17 @@ namespace ONoticiarioCore.Data
             base.OnModelCreating(modelBuilder);
             //Inicio do SEED
 
-            //
+            //Noticias com comentários
             modelBuilder.Entity<Categoria_Noticias>()
-                .HasKey(nc => new { nc.categoriaIdFK, nc.noticiaIdFK });
+                .HasKey(nc => new { nc.CategoriaIdFK, nc.NoticiaIdFK });
             modelBuilder.Entity<Categoria_Noticias>()
                 .HasOne(nc => nc.Noticias)
                 .WithMany(c => c.ListCatNot)
-                .HasForeignKey(nc => nc.noticiaIdFK);
+                .HasForeignKey(nc => nc.NoticiaIdFK);
             modelBuilder.Entity<Categoria_Noticias>()
                 .HasOne(nc => nc.Categorias)
                 .WithMany(c => c.ListCatNot)
-                .HasForeignKey(nc => nc.categoriaIdFK);
+                .HasForeignKey(nc => nc.CategoriaIdFK);
 
 
 
@@ -104,9 +104,6 @@ namespace ONoticiarioCore.Data
                                 UtilizadorFK = 1,
                                 Descricao = "asdasd.",
                                 Conteudo = "asdasdsada.",
-                                ///
-                                ListCatNot = new List<Categoria_Noticias> { },
-                                ListaComentarios = new List<Comentarios> { }
                             },
                           new Noticias
                           {
@@ -117,9 +114,6 @@ namespace ONoticiarioCore.Data
                               UtilizadorFK = 1,
                               Descricao = "aaaa",
                               Conteudo = "asdasdsadasdas",
-                              ///
-                              ListCatNot = new List<Categoria_Noticias> { },
-                              ListaComentarios = new List<Comentarios> { }
                           },
                            new Noticias
                            {
@@ -130,9 +124,6 @@ namespace ONoticiarioCore.Data
                                UtilizadorFK = 1,
                                Descricao = "aaaa",
                                Conteudo = "asdasdsadasdas",
-                               ///
-                               ListCatNot = new List<Categoria_Noticias> { },
-                               ListaComentarios = new List<Comentarios> { }
                            },
                             new Noticias
                             {
@@ -143,12 +134,18 @@ namespace ONoticiarioCore.Data
                                 UtilizadorFK = 2,
                                 Descricao = "aaaa",
                                 Conteudo = "asdasdsadasdas",
-                                ///
-                                ListCatNot = new List<Categoria_Noticias> { },
-                                ListaComentarios = new List<Comentarios> { }
                             }
                     );
-                }
+            modelBuilder.Entity<Categoria_Noticias>().HasData(
+                    
+                    new Categoria_Noticias {CategoriaIdFK = 1, NoticiaIdFK = 1 },
+                    new Categoria_Noticias { CategoriaIdFK = 2, NoticiaIdFK = 1 },
+                    new Categoria_Noticias { CategoriaIdFK = 3, NoticiaIdFK = 1 }
+
+                );
+
+        }
+
 
         // adicionar as 'tabelas' à BD
         public virtual DbSet<Categorias> Categorias { get; set; }

@@ -10,8 +10,8 @@ using ONoticiarioCore.Data;
 namespace ONoticiarioCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200813181056_DB")]
-    partial class DB
+    [Migration("20200917093933_DB2")]
+    partial class DB2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,17 +23,34 @@ namespace ONoticiarioCore.Migrations
 
             modelBuilder.Entity("ONoticiarioCore.Models.Categoria_Noticias", b =>
                 {
-                    b.Property<int>("categoriaIdFK")
+                    b.Property<int>("CategoriaIdFK")
                         .HasColumnType("int");
 
-                    b.Property<int>("noticiaIdFK")
+                    b.Property<int>("NoticiaIdFK")
                         .HasColumnType("int");
 
-                    b.HasKey("categoriaIdFK", "noticiaIdFK");
+                    b.HasKey("CategoriaIdFK", "NoticiaIdFK");
 
-                    b.HasIndex("noticiaIdFK");
+                    b.HasIndex("NoticiaIdFK");
 
                     b.ToTable("Categoria_Noticias");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoriaIdFK = 1,
+                            NoticiaIdFK = 1
+                        },
+                        new
+                        {
+                            CategoriaIdFK = 2,
+                            NoticiaIdFK = 1
+                        },
+                        new
+                        {
+                            CategoriaIdFK = 3,
+                            NoticiaIdFK = 1
+                        });
                 });
 
             modelBuilder.Entity("ONoticiarioCore.Models.Categorias", b =>
@@ -275,13 +292,13 @@ namespace ONoticiarioCore.Migrations
                 {
                     b.HasOne("ONoticiarioCore.Models.Categorias", "Categorias")
                         .WithMany("ListCatNot")
-                        .HasForeignKey("categoriaIdFK")
+                        .HasForeignKey("CategoriaIdFK")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ONoticiarioCore.Models.Noticias", "Noticias")
                         .WithMany("ListCatNot")
-                        .HasForeignKey("noticiaIdFK")
+                        .HasForeignKey("NoticiaIdFK")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

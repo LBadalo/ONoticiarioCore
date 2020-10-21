@@ -162,7 +162,7 @@ namespace ONoticiarioCore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Categoria_Noticias_noticiaIdFK",
                 table: "Categoria_Noticias",
-                column: "noticiaIdFK");
+                column: "NoticiaIdFK");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comentarios_NoticiasFK",

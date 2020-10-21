@@ -28,6 +28,14 @@
     <Compile Remove="Migrations\20200813175717_DB.Designer.cs" />
     <Compile Remove="Migrations\20200813180732_DB.cs" />
     <Compile Remove="Migrations\20200813180732_DB.Designer.cs" />
+    <Compile Remove="Migrations\20200813181056_DB.cs" />
+    <Compile Remove="Migrations\20200813181056_DB.Designer.cs" />
+    <Compile Remove="Migrations\20200915150114_DB.cs" />
+    <Compile Remove="Migrations\20200915150114_DB.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Imagens\index.jpg" />
   </ItemGroup>
 
   <ItemGroup>

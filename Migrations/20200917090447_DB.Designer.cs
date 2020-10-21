@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ONoticiarioCore.Data;
 
 namespace ONoticiarioCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200917090447_DB")]
+    partial class DB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,23 +34,6 @@ namespace ONoticiarioCore.Migrations
                     b.HasIndex("NoticiaIdFK");
 
                     b.ToTable("Categoria_Noticias");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoriaIdFK = 1,
-                            NoticiaIdFK = 1
-                        },
-                        new
-                        {
-                            CategoriaIdFK = 2,
-                            NoticiaIdFK = 1
-                        },
-                        new
-                        {
-                            CategoriaIdFK = 3,
-                            NoticiaIdFK = 1
-                        });
                 });
 
             modelBuilder.Entity("ONoticiarioCore.Models.Categorias", b =>

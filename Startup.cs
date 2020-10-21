@@ -31,12 +31,12 @@ namespace ONoticiarioCore
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //  services.AddDefaultIdentity<IdentityUser>( 
-            // deixei de usar a referência ao Utilizador standard para passar a usar o 'meu' novo utilizador
-           // services.AddDefaultIdentity<ApplicationUser>(
-            //   options => options.SignIn.RequireConfirmedAccount = true)
-             //   .AddRoles<IdentityRole>()  // ativa o funcionamento dos ROLES
-              //  .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<IdentityUser>(
+             // deixei de usar a referência ao Utilizador standard para passar a usar o 'meu' novo utilizador
+             options => options.SignIn.RequireConfirmedAccount = true)
+              .AddRoles<IdentityRole>()  // ativa o funcionamento dos ROLES
+              .AddEntityFrameworkStores<ApplicationDbContext>();
+            
 
             services.AddControllersWithViews();
             services.AddRazorPages();
